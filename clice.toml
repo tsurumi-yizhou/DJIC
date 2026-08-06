@@ -1,0 +1,2 @@
+[project]
+clang_tidy = true
