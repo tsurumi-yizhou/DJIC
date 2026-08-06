@@ -278,7 +278,7 @@ int cmd_sms() {
 
   std::string line;
   while (true) {
-    std::cout << "\ncellular-sms> " << std::flush;
+    std::cout << "\ndjic-sms> " << std::flush;
     if (!std::getline(std::cin, line))
       break;
     auto parts = tokenize(line);
@@ -426,7 +426,7 @@ std::optional<std::string> discover_aid(esim::EsimClient &esim) {
 int cmd_esim(const std::vector<std::string> &args) {
   if (args.empty()) {
     std::cerr
-        << "用法: cellular esim <eid|list|switch|enable|disable|delete|apdu>\n";
+        << "用法: djic esim <eid|list|switch|enable|disable|delete|apdu>\n";
     return 1;
   }
   auto ch = open_at_channel();
@@ -475,7 +475,7 @@ int cmd_esim(const std::vector<std::string> &args) {
   if (action == "switch" || action == "enable" || action == "disable" ||
       action == "delete") {
     if (args.size() < 2) {
-      std::cerr << "用法: cellular esim " << action << " <iccid>\n";
+      std::cerr << "用法: djic esim " << action << " <iccid>\n";
       return 1;
     }
     auto aid = discover_aid(esim);
@@ -513,7 +513,7 @@ int cmd_esim(const std::vector<std::string> &args) {
 
   if (action == "apdu") {
     if (args.size() < 3) {
-      std::cerr << "用法: cellular esim apdu <aidhex> <apduhex>\n";
+      std::cerr << "用法: djic esim apdu <aidhex> <apduhex>\n";
       return 1;
     }
     int channel = esim.open_channel(args[1]);
@@ -534,7 +534,7 @@ int cmd_esim(const std::vector<std::string> &args) {
 } // namespace
 
 int main(int argc, char *argv[]) {
-  argparse::ArgumentParser program("cellular", "0.1.0");
+  argparse::ArgumentParser program("djic", "0.1.0");
   program.add_description(
       "DJI 第一代 4G 模块 CLI 工具：数据上网模式 / 通话&短信模式");
   program.add_argument("-h", "--help")
@@ -620,7 +620,7 @@ int main(int argc, char *argv[]) {
       auto parts = sub.present<std::vector<std::string>>("message").value_or(
           std::vector<std::string>{});
       if (parts.empty()) {
-        std::cerr << "用法: cellular sms send <号码> <内容>\n";
+        std::cerr << "用法: djic sms send <号码> <内容>\n";
         return 1;
       }
       return cmd_sms_send(phone, join(parts, " "));
@@ -638,7 +638,7 @@ int main(int argc, char *argv[]) {
     auto parts = sub.present<std::vector<std::string>>("message").value_or(
         std::vector<std::string>{});
     if (phone.empty() || parts.empty()) {
-      std::cerr << "用法: cellular sms-send <号码> <内容>\n";
+      std::cerr << "用法: djic sms-send <号码> <内容>\n";
       return 1;
     }
     return cmd_sms_send(phone, join(parts, " "));
@@ -674,7 +674,7 @@ int main(int argc, char *argv[]) {
       return cmd_esim(args);
     }
     std::cerr
-        << "用法: cellular esim <eid|list|switch|enable|disable|delete|apdu>\n";
+        << "用法: djic esim <eid|list|switch|enable|disable|delete|apdu>\n";
     return 1;
   }
 
