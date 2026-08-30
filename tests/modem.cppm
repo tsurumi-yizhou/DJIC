@@ -1,6 +1,5 @@
 module;
 
-#include <boost/ut.hpp>
 #include <cstdint>
 #include <string>
 
@@ -13,7 +12,6 @@ import support;
 namespace tests {
 
 export void register_modem_tests() {
-  using namespace boost::ut;
   "Modem and Asterisk state"_test = [] {
     require(modem::parse_csq_dbm("+CSQ: 15,99") == -83,
             "CSQ should convert RSSI to dBm");

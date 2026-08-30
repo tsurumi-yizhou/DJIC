@@ -13,6 +13,8 @@ module;
 #include <mutex>
 #include <optional>
 #include <ranges>
+#define SIMDJSON_SERIALIZATION_INL_H
+#define SIMDJSON_DOM_FRACTURED_JSON_INL_H
 #include <simdjson.h>
 #include <stdexcept>
 #include <string>

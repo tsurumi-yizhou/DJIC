@@ -1,6 +1,5 @@
 module;
 
-#include <boost/ut.hpp>
 #include <string>
 #include <vector>
 
@@ -12,7 +11,6 @@ import usb;
 namespace tests {
 
 export void register_at_tests() {
-  using namespace boost::ut;
   "AT parsing"_test = [] {
     const std::string response = "\r\n +CSQ: 17,99\r\n\r\nOK\r\n";
     require(usb::at_response_complete(response), "AT response should complete");

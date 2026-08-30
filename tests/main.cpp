@@ -1,5 +1,4 @@
-#include <boost/ut.hpp>
-
+import support;
 import test_at;
 import test_modem;
 import test_pdu;
@@ -10,12 +9,5 @@ int main(int argc, char *argv[]) {
   tests::register_pdu_tests();
   tests::register_sms_tests();
   tests::register_modem_tests();
-  // Boost.UT 的 run_cfg 使用 C ABI 风格 argv；仅在入口边界传递该指针。
-  const auto run_config = boost::ut::run_cfg{
-      .report_errors = false,
-      .argc = argc,
-      .argv = const_cast<const char **>(argv),
-  };
-  const bool failed = boost::ut::cfg<>.run(run_config);
-  return failed ? 1 : 0;
+  return tests::run_tests(argc, const_cast<const char **>(argv)) ? 1 : 0;
 }

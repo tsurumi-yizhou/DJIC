@@ -1,6 +1,5 @@
 module;
 
-#include <boost/ut.hpp>
 #include <string>
 
 export module test_sms;
@@ -12,7 +11,6 @@ import support;
 namespace tests {
 
 export void register_sms_tests() {
-  using namespace boost::ut;
   "SMS logic"_test = [] {
     require(sms::extract_sms_code("您的验证码： 482913") == "482913",
             "Chinese verification code should be extracted");

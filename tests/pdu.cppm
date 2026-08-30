@@ -1,10 +1,10 @@
 module;
 
 #include <array>
-#include <boost/ut.hpp>
 #include <cstdint>
 #include <span>
 #include <string>
+#include <vector>
 
 export module test_pdu;
 
@@ -14,7 +14,6 @@ import support;
 namespace tests {
 
 export void register_pdu_tests() {
-  using namespace boost::ut;
   "PDU codec"_test = [] {
     const std::string text = "Hello";
     const auto encoded = smscodec::encode_gsm7_septets(text);
