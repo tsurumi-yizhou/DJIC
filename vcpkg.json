@@ -1,13 +1,14 @@
 {
-    "name": "djic",
-    "version": "0.1.0",
-    "dependencies": [
-        "libusb",
-        "argparse",
-        "spdlog",
-        "bext-ut",
-        "boost-asio",
-        "boost-beast",
-        "simdjson"
-    ]
+  "name": "djic",
+  "version": "0.1.0",
+  "dependencies": [
+    "libusb",
+    "argparse",
+    "spdlog",
+    "bext-ut",
+    "boost-asio",
+    "boost-beast",
+    "simdjson"
+  ],
+  "builtin-baseline": "9eec002df1cd109f8f104cd966a763daf9751489"
 }
